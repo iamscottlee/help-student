@@ -46,7 +46,7 @@
             <h2>学生信息</h2>
             <a class="btn btn-primary" href="/stu/exportStu">导出数据为excel</a>
             <a class="btn btn-primary" href="#" id="add">添加学生</a>
-            <a class="btn btn-success" href="">筛选贫困生</a>
+            <a class="btn btn-success" href="/data/poorStuList">筛选贫困生</a>
             <%--<div class="btn-group">--%>
                 <%--<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
                     <%--查看接口数据 <span class="caret"></span>--%>
@@ -135,7 +135,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">update Stu</h4>
+                <h4 class="modal-title">编辑学生信息</h4>
             </div>
             <form action="/stu/updateStu" method="post">
                 <div class="modal-body">
@@ -184,7 +184,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">add stu</h4>
+                <h4 class="modal-title">添加学生</h4>
             </div>
             <form action="/stu/addStu" method="post">
                 <div class="modal-body">

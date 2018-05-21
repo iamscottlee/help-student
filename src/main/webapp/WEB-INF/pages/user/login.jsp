@@ -21,10 +21,18 @@
      <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
      <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+        <%--<style type="text/css">--%>
+
+            <%--body {background-color: #EAFFF0}--%>
+            <%--/*#C1FFC1  #CAE1FF*/--%>
+            <%--/*h2 {background-color: #5cb85c}*/--%>
+
+        <%--</style>--%>
+
     <title>登录</title>
 </head>
 <body>
-<div class="jumbotron">
+<div class="jumbotron ">
     <div class="container"  align="center">
         <h2 class="text-info" style="font-weight:bold;font-size:49px;">贫困生认定系统</h2>
     </div>
@@ -37,11 +45,11 @@
     <div class="col-xs-4">
         <div class="form-group">
                 <label for="username">username:</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username:"/>
+                <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名："/>
         </div>
         <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password:"/>
+                <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码："/>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-sm btn-success" title="登录">登录</button>

@@ -5,14 +5,12 @@ import com.project.help.pojo.User;
 import com.project.help.pojo.UserExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -49,7 +47,7 @@ public class UserController {
     //登录
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String login() {
-        return "user/login";
+        return "/user/login";
     }
 
     @RequestMapping(value = "/loginValidate",method = RequestMethod.POST)
@@ -57,7 +55,7 @@ public class UserController {
                                 @RequestParam("password") String password,
                                 HttpSession httpSession) {
         if(username==null || password==null)
-            return "user/login";
+            return "/user/login";
         else {
                 UserExample userExample=new UserExample();
                 UserExample.Criteria criteria=userExample.createCriteria();
@@ -67,7 +65,7 @@ public class UserController {
                         return "redirect:/stu/student/stuList";
                     }
                     else {
-                        return "user/login";
+                        return "/user/login";
 
                     }
         }

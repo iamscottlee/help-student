@@ -63,7 +63,7 @@ public class StuController {
         return "redirect:student/stuList";
     }
 
-    //更新有问题？？
+    //更新
     @RequestMapping(value = "/updateStu",method = RequestMethod.POST)
     public String update(@RequestParam("stuId") Integer stuId,
                          @RequestParam("stuNum") String stuNum,
