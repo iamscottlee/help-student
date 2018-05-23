@@ -26,11 +26,12 @@
             <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed"  data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar">**</span>
                         </button>
-                        <a class="navbar-brand" href="/stu/stuList">贫困生认定系统</a>
+                        <a class="navbar-brand" href="/stu/student/stuList">贫困生认定系统</a>
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
@@ -48,19 +49,19 @@
             <a class="btn btn-primary" href="#" id="add">添加学生</a>
             <a class="btn btn-success" href="/data/poorStuList">筛选贫困生</a>
             <%--<div class="btn-group">--%>
-                <%--<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
-                    <%--查看接口数据 <span class="caret"></span>--%>
-                <%--</button>--%>
-                <%--<ul class="dropdown-menu">--%>
-                    <%--<li><a href="/stu/stulistxml?current=1&rowCount=10&sort[sender]=asc&searchPhrase=&id=b0df282a-0d67-40e5-8558-c9e93b7befed" target="_blank">XML</a></li>--%>
-                    <%--<li><a href="/stu/getStuInfo?stuId=1&sort[sender]=asc&searchPhrase=&id=b0df282a-0d67-40e5-8558-c9e93b7befed" target="_blank">JSON</a></li>--%>
-                <%--</ul>--%>
+            <%--<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
+            <%--查看接口数据 <span class="caret"></span>--%>
+            <%--</button>--%>
+            <%--<ul class="dropdown-menu">--%>
+            <%--<li><a href="/stu/stulistxml?current=1&rowCount=10&sort[sender]=asc&searchPhrase=&id=b0df282a-0d67-40e5-8558-c9e93b7befed" target="_blank">XML</a></li>--%>
+            <%--<li><a href="/stu/getStuInfo?stuId=1&sort[sender]=asc&searchPhrase=&id=b0df282a-0d67-40e5-8558-c9e93b7befed" target="_blank">JSON</a></li>--%>
+            <%--</ul>--%>
             <%--</div>--%>
 
             <table id="grid-data" class="table table-condensed table-hover table-striped">
                 <thead>
                 <tr>
-                    <th data-column-id="stuId"  data-identifier="true" data-type="numeric">Id</th>
+                    <th data-column-id="stuId" data-identifier="true" data-type="numeric">Id</th>
                     <th data-column-id="stuNum">学号</th>
                     <th data-column-id="stuName">姓名</th>
                     <th data-column-id="stuSex">性别</th>
@@ -77,29 +78,25 @@
 
 <%--2--%>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         var grid = $("#grid-data").bootgrid({
-            ajax:true,
-            post: function ()
-            {
+            ajax: true,
+            post: function () {
                 return {
                     id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
                 };
             },
-            url:"/stu/stuList",
+            url: "/stu/stuList",
             formatters: {
-                "commands": function(column, row)
-                {
+                "commands": function (column, row) {
                     return "<button type=\"button\" class=\"btn btn-xs btn-warning command-edit\"  data-row-id=\"" + row.stuId + "\">编辑<span class=\"fa fa-pencil\"></span></button> " +
                         "<button type=\"button\" class=\"btn btn-xs btn-danger command-delete\" data-row-id=\"" + row.stuId + "\">删除<span class=\"fa fa-trash-o\"></span></button>";
                 }
             }
-        }).on("loaded.rs.jquery.bootgrid", function()
-        {
-            grid.find(".command-edit").on("click", function(e)
-            {
+        }).on("loaded.rs.jquery.bootgrid", function () {
+            grid.find(".command-edit").on("click", function (e) {
                 $(".stumodal").modal();
-                $.post("/stu/getStuInfo",{stuId:$(this).data("row-id")},function(str){
+                $.post("/stu/getStuInfo", {stuId: $(this).data("row-id")}, function (str) {
                     $("#stuId2").val(str.stuId);
                     $("#stuNum2").val(str.stuNum);
                     $("#stuName2").val(str.stuName);
@@ -108,11 +105,10 @@
                     $("#stuMajor2").val(str.stuMajor);
                     $("#poorLevel2").val(str.poorLevel);
                 });
-            }).end().find(".command-delete").on("click", function(e)
-            {
+            }).end().find(".command-delete").on("click", function (e) {
                 alert("You pressed delete on row: " + $(this).data("row-id"));
 
-                $.post("/stu/delStu",{stuId:$(this).data("row-id")},function(){
+                $.post("/stu/delStu", {stuId: $(this).data("row-id")}, function () {
                     alert("删除成功");
                     $("#grid-data").bootgrid("reload");
                 });
@@ -120,8 +116,8 @@
         });
     });
 
-    $(document).ready(function(){
-        $("#add").click(function(){
+    $(document).ready(function () {
+        $("#add").click(function () {
             $(".addmodal").modal();
         });
     });
@@ -134,7 +130,8 @@
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="modal-title">编辑学生信息</h4>
             </div>
             <form action="/stu/updateStu" method="post">
@@ -183,7 +180,8 @@
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="modal-title">添加学生</h4>
             </div>
             <form action="/stu/addStu" method="post">

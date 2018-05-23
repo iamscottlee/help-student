@@ -1,7 +1,6 @@
 package com.project.help.config;
 
 import com.github.pagehelper.PageHelper;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

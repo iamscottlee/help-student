@@ -5,9 +5,8 @@ public class PoorStudent {
     private String stuNum;
     private String stuName;
     private String stuMajor;
-    private double avgMoney;
-    private double variance;
-    private double rate;
+    private int finalScore;
+
 
     public String getStuNum() {
         return stuNum;
@@ -33,27 +32,11 @@ public class PoorStudent {
         this.stuMajor = stuMajor;
     }
 
-    public double getAvgMoney() {
-        return avgMoney;
+    public int getFinalScore() {
+        return finalScore;
     }
 
-    public void setAvgMoney(double avgMoney) {
-        this.avgMoney = avgMoney;
-    }
-
-    public double getVariance() {
-        return variance;
-    }
-
-    public void setVariance(double variance) {
-        this.variance = variance;
-    }
-
-    public double getRate() {
-        return rate;
-    }
-
-    public void setRate(double rate) {
-        this.rate = rate;
+    public void setFinalScore(int finalScore) {
+        this.finalScore = finalScore;
     }
 }

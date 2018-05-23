@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -42,7 +42,12 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
+            <version>5.1.35</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>2.5.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -82,28 +87,28 @@
         </dependency>
 
         <!-- junit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>junit</groupId>-->
+        <!--<artifactId>junit</artifactId>-->
+        <!--<version>4.12</version>-->
+        <!--<scope>test</scope>-->
+        <!--</dependency>-->
 
         <!-- fastjson -->
         <!--<dependency>-->
-            <!--<groupId>com.fasterxml.jackson.core</groupId>-->
-            <!--<artifactId>jackson-core</artifactId>-->
-            <!--<version>2.3.1</version>-->
+        <!--<groupId>com.fasterxml.jackson.core</groupId>-->
+        <!--<artifactId>jackson-core</artifactId>-->
+        <!--<version>2.3.1</version>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>com.fasterxml.jackson.core</groupId>-->
-            <!--<artifactId>jackson-annotations</artifactId>-->
-            <!--<version>2.3.0</version>-->
+        <!--<groupId>com.fasterxml.jackson.core</groupId>-->
+        <!--<artifactId>jackson-annotations</artifactId>-->
+        <!--<version>2.3.0</version>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>com.fasterxml.jackson.core</groupId>-->
-            <!--<artifactId>jackson-databind</artifactId>-->
-            <!--<version>2.3.1</version>-->
+        <!--<groupId>com.fasterxml.jackson.core</groupId>-->
+        <!--<artifactId>jackson-databind</artifactId>-->
+        <!--<version>2.3.1</version>-->
         <!--</dependency>-->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -113,19 +118,19 @@
 
         <!-- aspectjweaver -->
         <!--<dependency>-->
-            <!--<groupId>org.aspectj</groupId>-->
-            <!--<artifactId>aspectjweaver</artifactId>-->
-            <!--<version>1.7.2</version>-->
+        <!--<groupId>org.aspectj</groupId>-->
+        <!--<artifactId>aspectjweaver</artifactId>-->
+        <!--<version>1.7.2</version>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>org.slf4j</groupId>-->
-            <!--<artifactId>slf4j-api</artifactId>-->
-            <!--<version>1.7.7</version>-->
+        <!--<groupId>org.slf4j</groupId>-->
+        <!--<artifactId>slf4j-api</artifactId>-->
+        <!--<version>1.7.7</version>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>org.slf4j</groupId>-->
-            <!--<artifactId>slf4j-log4j12</artifactId>-->
-            <!--<version>1.7.7</version>-->
+        <!--<groupId>org.slf4j</groupId>-->
+        <!--<artifactId>slf4j-log4j12</artifactId>-->
+        <!--<version>1.7.7</version>-->
         <!--</dependency>-->
         <dependency>
             <groupId>commons-fileupload</groupId>
@@ -138,19 +143,19 @@
             <version>2.2</version>
         </dependency>
         <!--<dependency>-->
-            <!--<groupId>commons-logging</groupId>-->
-            <!--<artifactId>commons-logging</artifactId>-->
-            <!--<version>1.1.3</version>-->
+        <!--<groupId>commons-logging</groupId>-->
+        <!--<artifactId>commons-logging</artifactId>-->
+        <!--<version>1.1.3</version>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>org.apache.commons</groupId>-->
-            <!--<artifactId>commons-lang3</artifactId>-->
-            <!--<version>3.1</version>-->
+        <!--<groupId>org.apache.commons</groupId>-->
+        <!--<artifactId>commons-lang3</artifactId>-->
+        <!--<version>3.1</version>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>ognl</groupId>-->
-            <!--<artifactId>ognl</artifactId>-->
-            <!--<version>3.0.6</version>-->
+        <!--<groupId>ognl</groupId>-->
+        <!--<artifactId>ognl</artifactId>-->
+        <!--<version>3.0.6</version>-->
         <!--</dependency>-->
 
         <!--生成Excel文件api-->
@@ -181,19 +186,29 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/webapp</directory>
+                <targetPath>META-INF/resources</targetPath>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <useSystemClassLoader>false</useSystemClassLoader>
-                </configuration>
-            </plugin>
             <!--mybatis-generator-->
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
@@ -221,10 +236,6 @@
                     </dependency>
                 </dependencies>
             </plugin>
-
-
-
-
         </plugins>
     </build>
 
